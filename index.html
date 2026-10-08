@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1715">
+  <title>RIVER · 德州扑克胜率计算器</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="/" aria-label="RIVER 首页"><span class="brand-symbol">♠</span> RIVER<span class="brand-sub">POKER LAB</span></a>
+    <button id="help-open" class="quiet">ⓘ 计算原理</button>
+  </header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">TEXAS HOLD’EM / EQUITY CALCULATOR</p><h1>让每一手牌，<span>心中有数。</span></h1><p class="subtitle">设置牌局，探索你的摊牌胜率与底池权益。</p></div><div class="local-badge"><i></i> 本地计算 · 无需联网</div></div>
+    <div class="workspace">
+      <section class="setup panel" aria-labelledby="setup-title">
+        <div class="panel-head"><h2 id="setup-title"><span class="section-num">01</span> 设置牌局</h2><button id="reset" class="quiet small">↺ 重置</button></div>
+        <div class="table-area">
+          <div class="street-label"><span id="street">PRE-FLOP / 翻牌前</span><span class="table-caption">NO LIMIT HOLD’EM</span></div>
+          <div class="board-block"><div class="field-heading">公共牌 <span>点击选择 · 可留空</span><button id="clear-board" class="text-button">清空</button></div><div id="board" class="cards board-cards"></div><div class="street-markers"><span>FLOP / 翻牌</span><span>TURN</span><span>RIVER</span></div></div>
+          <div class="hero-block"><div class="hero-tag">你的手牌</div><div id="hero" class="cards hero-cards"></div><div id="hand-label" class="hand-label"></div></div>
+        </div>
+        <div class="opponents-section"><div class="field-heading">对手 <span>留空时，从剩余牌中随机发牌</span><div class="stepper"><button id="remove-opponent" aria-label="减少对手">−</button><output id="opponent-count">1</output><button id="add-opponent" aria-label="增加对手">+</button></div></div><div id="opponents" class="opponents-list"></div></div>
+        <div class="simulation-section"><div class="field-heading">模拟精度 <span>小规模牌局自动精确枚举</span></div><div class="precision" role="group" aria-label="模拟精度"><button data-iterations="10000">快速<span>1 万次</span></button><button data-iterations="100000" class="selected">标准<span>10 万次</span></button><button data-iterations="1000000">精细<span>100 万次</span></button></div></div>
+        <div id="error" class="error" role="alert" hidden></div>
+        <button id="calculate" class="calculate">计算胜率 <span>↗</span></button><button id="cancel" class="cancel" hidden>取消计算</button>
+        <p class="setup-note">默认对手为均匀随机手牌；已知手牌可单独指定。</p>
+      </section>
+      <section class="results panel" aria-labelledby="results-title">
+        <div class="panel-head"><h2 id="results-title"><span class="section-num">02</span> 牌局分析</h2><span id="result-status" class="status-chip">等待计算</span></div>
+        <div id="empty-result" class="empty-result"><div class="empty-icon">♠</div><h3>下一张牌，充满可能。</h3><p>选择你的手牌与公共牌，<br>点击「计算胜率」查看完整分析。</p><div class="example-label">快速体验</div><div class="examples"><button data-example="aces">AA 对随机手牌 <span>↗</span></button><button data-example="draw">翻牌同花听牌 <span>↗</span></button><button data-example="duel">AA 对 KK <span>↗</span></button></div></div>
+        <div id="progress-view" class="progress-view" hidden><div class="spinner"></div><h3>正在探索可能的牌局</h3><p id="progress-text">准备计算…</p><progress id="progress" max="100" value="0"></progress><p class="muted">后台独立计算，界面仍可操作</p></div>
+        <div id="result-content" hidden>
+          <div class="equity-hero"><div id="equity-ring" class="equity-ring"><div><span class="eyebrow">YOUR EQUITY</span><strong id="equity">—</strong><span>底池权益</span></div></div><p id="equity-explanation" class="equity-explanation"></p></div>
+          <div class="metrics"><div><span><i class="dot win"></i>独赢率</span><strong id="win">—</strong></div><div><span><i class="dot tie"></i>平局率</span><strong id="tie">—</strong></div><div><span><i class="dot lose"></i>落败率</span><strong id="lose">—</strong></div></div>
+          <div class="analysis-block"><div class="field-heading">玩家权益对比 <span>所有玩家合计 100%</span></div><div id="player-results"></div></div>
+          <div class="analysis-block distribution"><div class="field-heading">你的最终牌型 <span>摊牌时的最佳五张牌</span></div><div id="categories"></div></div>
+          <div id="result-meta" class="result-meta"></div>
+        </div>
+      </section>
+    </div>
+    <div class="method-note"><span class="note-icon">◇</span><p><strong>概率，来自每一种可能。</strong> 使用标准 52 张牌、七选五牌型比较。权益包含平局时分得的底池份额，代表发牌至摊牌的数学期望。</p><span class="method-tag">MONTE CARLO + EXACT</span></div>
+  </main>
+  <footer><span>RIVER <span class="footer-separator">/</span> 知道概率，理解牌局。</span><span>仅计算摊牌概率，不包含弃牌与下注策略。</span></footer>
+  <dialog id="card-picker"><div class="dialog-head"><div><p class="eyebrow">SELECT A CARD</p><h2 id="picker-title">选择手牌</h2></div><button id="picker-close" class="close" aria-label="关闭选牌">×</button></div><div id="picker-preview" class="picker-preview"></div><p class="picker-tip">灰色牌已被占用；选牌后自动移至下一个空位。</p><div id="deck" class="deck"></div><div class="picker-footer"><button id="clear-slot" class="quiet">清除当前牌</button><button id="picker-done" class="done">完成选择</button></div></dialog>
+  <dialog id="help"><div class="dialog-head"><h2>计算原理</h2><button id="help-close" class="close" aria-label="关闭说明">×</button></div><div class="help-copy"><h3>按标准德州扑克规则比较</h3><p>从每人的两张手牌和五张公共牌中，选出最强的五张；可使用 0、1 或 2 张手牌。花色不决定大小，A2345 为最小顺子。</p><h3>精确枚举 + 蒙特卡洛</h3><p>可能的发牌组合不超过 150,000 时，枚举全部结果；否则，从未占用的牌中均匀无放回抽样，补齐公共牌和随机对手手牌。提高次数可降低随机误差。</p><h3>三个概率与一个权益</h3><p>独赢：你单独拥有最强牌。平局：你与至少一名对手并列最强。落败：至少一名对手更强。三者之和为 100%。</p><p class="formula">权益 = 平均底池份额<br>独赢计 1；k 人平局计 1/k；落败计 0</p><p>例如三人平局，每人权益为 33.33%，而平局率均为 100%。模拟结果给出 Hoeffding 不等式的 95% 保守误差上界，单位为百分点；精确枚举无抽样误差。</p><h3>模型假设</h3><p>空白对手手牌代表所有合法组合等可能，不代表特定玩家的实际范围。计算假设所有人发牌至摊牌、等额争夺同一底池，不考虑弃牌、下注、抽水、边池或不同筹码深度。</p><p class="source-links">规则参考：<a href="https://www.pokerstars.com/poker/games/texas-holdem/" target="_blank" rel="noreferrer">PokerStars</a> · <a href="https://www.pokernews.com/poker-tools/" target="_blank" rel="noreferrer">PokerNews 权益说明</a></p></div></dialog>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

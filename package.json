@@ -1,0 +1,12 @@
+{
+  "name": "river-poker-equity",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Texas Hold'em equity calculator",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" }
+}
