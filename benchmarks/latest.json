@@ -1,0 +1,632 @@
+{
+  "generatedAt": "2026-10-08T09:51:16.956Z",
+  "reference": "https://github.com/goldfire/pokersolver",
+  "referenceVersion": "2.1.4",
+  "environment": {
+    "node": "v20.20.1",
+    "platform": "darwin/arm64",
+    "cpu": "Apple M4 Pro"
+  },
+  "evaluator": {
+    "hands": 25000,
+    "deals": 5000,
+    "categoryMismatches": 0,
+    "winnerMismatches": 0,
+    "localMs": 24.17237500000001,
+    "referenceMs": 316.522208
+  },
+  "equity": [
+    {
+      "hero": "As Ks",
+      "board": "Qs Js Ts 2h 3h",
+      "localEquity": 100,
+      "referenceEquity": 100,
+      "absoluteError": 0
+    },
+    {
+      "hero": "Ah Ad",
+      "board": "Kh Qh Jh Th 2s",
+      "localEquity": 100,
+      "referenceEquity": 100,
+      "absoluteError": 0
+    },
+    {
+      "hero": "2h 3h",
+      "board": "As Ks Qs Js Ts",
+      "localEquity": 50,
+      "referenceEquity": 50,
+      "absoluteError": 0
+    },
+    {
+      "hero": "8s 9d",
+      "board": "7c 8d 9c Ts Jh",
+      "localEquity": 41.41414141414141,
+      "referenceEquity": 41.41414141414141,
+      "absoluteError": 0
+    }
+  ],
+  "action": {
+    "trials": 30000,
+    "cases": [
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "弃牌",
+        "policy": "cautious",
+        "exactEV": 0,
+        "sampledEV": 0,
+        "ci95": 0,
+        "absoluteError": 0
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "弃牌",
+        "policy": "value",
+        "exactEV": 0,
+        "sampledEV": 0,
+        "ci95": 0,
+        "absoluteError": 0
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "弃牌",
+        "policy": "pressure",
+        "exactEV": 0,
+        "sampledEV": 0,
+        "ci95": 0,
+        "absoluteError": 0
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "跟注 5.0 BB",
+        "policy": "cautious",
+        "exactEV": 14.181818181818466,
+        "sampledEV": 14.173333333333334,
+        "ci95": 0.04370568464771277,
+        "absoluteError": 0.00848484848513209
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "跟注 5.0 BB",
+        "policy": "value",
+        "exactEV": 14.181818181818466,
+        "sampledEV": 14.173333333333334,
+        "ci95": 0.04370568464771277,
+        "absoluteError": 0.00848484848513209
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "跟注 5.0 BB",
+        "policy": "pressure",
+        "exactEV": 14.181818181818466,
+        "sampledEV": 14.173333333333334,
+        "ci95": 0.04370568464771277,
+        "absoluteError": 0.00848484848513209
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "加注 11.6 BB",
+        "policy": "cautious",
+        "exactEV": 17.964913413218497,
+        "sampledEV": 17.967959999994328,
+        "ci95": 0.07544854393887529,
+        "absoluteError": 0.0030465867758309173
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "加注 11.6 BB",
+        "policy": "value",
+        "exactEV": 17.964913413218497,
+        "sampledEV": 17.967959999994328,
+        "ci95": 0.07544854393887529,
+        "absoluteError": 0.0030465867758309173
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "加注 11.6 BB",
+        "policy": "pressure",
+        "exactEV": 17.964913413218497,
+        "sampledEV": 17.967959999994328,
+        "ci95": 0.07544854393887529,
+        "absoluteError": 0.0030465867758309173
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "加注 全下 20.0 BB",
+        "policy": "cautious",
+        "exactEV": 20.74133945155466,
+        "sampledEV": 20.729166666666668,
+        "ci95": 0.12322381174287919,
+        "absoluteError": 0.012172784887990673
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "加注 全下 20.0 BB",
+        "policy": "value",
+        "exactEV": 20.74133945155466,
+        "sampledEV": 20.729166666666668,
+        "ci95": 0.12322381174287919,
+        "absoluteError": 0.012172784887990673
+      },
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "action": "加注 全下 20.0 BB",
+        "policy": "pressure",
+        "exactEV": 20.74133945155466,
+        "sampledEV": 20.729166666666668,
+        "ci95": 0.12322381174287919,
+        "absoluteError": 0.012172784887990673
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "弃牌",
+        "policy": "cautious",
+        "exactEV": 0,
+        "sampledEV": 0,
+        "ci95": 0,
+        "absoluteError": 0
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "弃牌",
+        "policy": "value",
+        "exactEV": 0,
+        "sampledEV": 0,
+        "ci95": 0,
+        "absoluteError": 0
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "弃牌",
+        "policy": "pressure",
+        "exactEV": 0,
+        "sampledEV": 0,
+        "ci95": 0,
+        "absoluteError": 0
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "跟注 5.0 BB",
+        "policy": "cautious",
+        "exactEV": 15.000000000000309,
+        "sampledEV": 15,
+        "ci95": 0,
+        "absoluteError": 3.090860900556436e-13
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "跟注 5.0 BB",
+        "policy": "value",
+        "exactEV": 15.000000000000309,
+        "sampledEV": 15,
+        "ci95": 0,
+        "absoluteError": 3.090860900556436e-13
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "跟注 5.0 BB",
+        "policy": "pressure",
+        "exactEV": 15.000000000000309,
+        "sampledEV": 15,
+        "ci95": 0,
+        "absoluteError": 3.090860900556436e-13
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "加注 11.6 BB",
+        "policy": "cautious",
+        "exactEV": 20.53050114402962,
+        "sampledEV": 20.52815999999026,
+        "ci95": 0.02754596331101278,
+        "absoluteError": 0.0023411440393594773
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "加注 11.6 BB",
+        "policy": "value",
+        "exactEV": 20.53050114402962,
+        "sampledEV": 20.52815999999026,
+        "ci95": 0.02754596331101278,
+        "absoluteError": 0.0023411440393594773
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "加注 11.6 BB",
+        "policy": "pressure",
+        "exactEV": 20.53050114402962,
+        "sampledEV": 20.52815999999026,
+        "ci95": 0.02754596331101278,
+        "absoluteError": 0.0023411440393594773
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "加注 全下 20.0 BB",
+        "policy": "cautious",
+        "exactEV": 26.485429455332714,
+        "sampledEV": 26.5465,
+        "ci95": 0.07145910828451864,
+        "absoluteError": 0.06107054466728812
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "加注 全下 20.0 BB",
+        "policy": "value",
+        "exactEV": 26.485429455332714,
+        "sampledEV": 26.5465,
+        "ci95": 0.07145910828451864,
+        "absoluteError": 0.06107054466728812
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "action": "加注 全下 20.0 BB",
+        "policy": "pressure",
+        "exactEV": 26.485429455332714,
+        "sampledEV": 26.5465,
+        "ci95": 0.07145910828451864,
+        "absoluteError": 0.06107054466728812
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "过牌",
+        "policy": "cautious",
+        "exactEV": 9.261630918542371,
+        "sampledEV": 9.295315000000091,
+        "ci95": 0.08894381171584029,
+        "absoluteError": 0.03368408145771973
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "过牌",
+        "policy": "value",
+        "exactEV": 9.701579906951519,
+        "sampledEV": 9.754940000000097,
+        "ci95": 0.10324831073937098,
+        "absoluteError": 0.05336009304857825
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "过牌",
+        "policy": "pressure",
+        "exactEV": 10.202588229485846,
+        "sampledEV": 10.239273333333438,
+        "ci95": 0.125159725722027,
+        "absoluteError": 0.03668510384759216
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 5.0 BB",
+        "policy": "cautious",
+        "exactEV": 10.89856758422778,
+        "sampledEV": 10.94586090000019,
+        "ci95": 0.11978431007526696,
+        "absoluteError": 0.04729331577240892
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 5.0 BB",
+        "policy": "value",
+        "exactEV": 11.115783284924854,
+        "sampledEV": 11.163702566667025,
+        "ci95": 0.12620299483054245,
+        "absoluteError": 0.047919281742171194
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 5.0 BB",
+        "policy": "pressure",
+        "exactEV": 11.115783284924854,
+        "sampledEV": 11.163702566667025,
+        "ci95": 0.12620299483054245,
+        "absoluteError": 0.047919281742171194
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 11.3 BB",
+        "policy": "cautious",
+        "exactEV": 11.189455042175634,
+        "sampledEV": 11.190083333333334,
+        "ci95": 0.15980317279043507,
+        "absoluteError": 0.0006282911576995787
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 11.3 BB",
+        "policy": "value",
+        "exactEV": 11.189455042175634,
+        "sampledEV": 11.190083333333334,
+        "ci95": 0.15980317279043507,
+        "absoluteError": 0.0006282911576995787
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 11.3 BB",
+        "policy": "pressure",
+        "exactEV": 11.189455042175634,
+        "sampledEV": 11.190083333333334,
+        "ci95": 0.15980317279043507,
+        "absoluteError": 0.0006282911576995787
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 15.0 BB",
+        "policy": "cautious",
+        "exactEV": 11.096909043953877,
+        "sampledEV": 11.120583333333334,
+        "ci95": 0.1757179888761538,
+        "absoluteError": 0.023674289379457036
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 15.0 BB",
+        "policy": "value",
+        "exactEV": 11.096909043953877,
+        "sampledEV": 11.120583333333334,
+        "ci95": 0.1757179888761538,
+        "absoluteError": 0.023674289379457036
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 15.0 BB",
+        "policy": "pressure",
+        "exactEV": 11.096909043953877,
+        "sampledEV": 11.120583333333334,
+        "ci95": 0.1757179888761538,
+        "absoluteError": 0.023674289379457036
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 全下 20.0 BB",
+        "policy": "cautious",
+        "exactEV": 10.920113263429482,
+        "sampledEV": 10.951416666666667,
+        "ci95": 0.19583428198772698,
+        "absoluteError": 0.03130340323718528
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 全下 20.0 BB",
+        "policy": "value",
+        "exactEV": 10.920113263429482,
+        "sampledEV": 10.951416666666667,
+        "ci95": 0.19583428198772698,
+        "absoluteError": 0.03130340323718528
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 全下 20.0 BB",
+        "policy": "pressure",
+        "exactEV": 10.920113263429482,
+        "sampledEV": 10.951416666666667,
+        "ci95": 0.19583428198772698,
+        "absoluteError": 0.03130340323718528
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "过牌",
+        "policy": "cautious",
+        "exactEV": 13.145135310443248,
+        "sampledEV": 13.137615000000427,
+        "ci95": 0.08344702051941401,
+        "absoluteError": 0.007520310442821199
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "过牌",
+        "policy": "value",
+        "exactEV": 14.808945806080898,
+        "sampledEV": 14.786031666667133,
+        "ci95": 0.09639736105034431,
+        "absoluteError": 0.02291413941376419
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "过牌",
+        "policy": "pressure",
+        "exactEV": 15.689991600568671,
+        "sampledEV": 15.636681666666966,
+        "ci95": 0.128191328156459,
+        "absoluteError": 0.05330993390170491
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 5.0 BB",
+        "policy": "cautious",
+        "exactEV": 15.69052428347058,
+        "sampledEV": 15.647366400002884,
+        "ci95": 0.09278138527309249,
+        "absoluteError": 0.04315788346769622
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 5.0 BB",
+        "policy": "value",
+        "exactEV": 15.69052428347058,
+        "sampledEV": 15.647366400002884,
+        "ci95": 0.09278138527309249,
+        "absoluteError": 0.04315788346769622
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 5.0 BB",
+        "policy": "pressure",
+        "exactEV": 15.69052428347058,
+        "sampledEV": 15.647366400002884,
+        "ci95": 0.09278138527309249,
+        "absoluteError": 0.04315788346769622
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 11.3 BB",
+        "policy": "cautious",
+        "exactEV": 16.72101222935115,
+        "sampledEV": 16.684,
+        "ci95": 0.12371241398031514,
+        "absoluteError": 0.03701222935114856
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 11.3 BB",
+        "policy": "value",
+        "exactEV": 16.72101222935115,
+        "sampledEV": 16.684,
+        "ci95": 0.12371241398031514,
+        "absoluteError": 0.03701222935114856
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 11.3 BB",
+        "policy": "pressure",
+        "exactEV": 16.72101222935115,
+        "sampledEV": 16.684,
+        "ci95": 0.12371241398031514,
+        "absoluteError": 0.03701222935114856
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 15.0 BB",
+        "policy": "cautious",
+        "exactEV": 17.018530479945543,
+        "sampledEV": 16.966,
+        "ci95": 0.1394843295764714,
+        "absoluteError": 0.05253047994554194
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 15.0 BB",
+        "policy": "value",
+        "exactEV": 17.018530479945543,
+        "sampledEV": 16.966,
+        "ci95": 0.1394843295764714,
+        "absoluteError": 0.05253047994554194
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 15.0 BB",
+        "policy": "pressure",
+        "exactEV": 17.018530479945543,
+        "sampledEV": 16.966,
+        "ci95": 0.1394843295764714,
+        "absoluteError": 0.05253047994554194
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 全下 20.0 BB",
+        "policy": "cautious",
+        "exactEV": 17.311158646323236,
+        "sampledEV": 17.265916666666666,
+        "ci95": 0.16016347372880266,
+        "absoluteError": 0.04524197965656995
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 全下 20.0 BB",
+        "policy": "value",
+        "exactEV": 17.311158646323236,
+        "sampledEV": 17.265916666666666,
+        "ci95": 0.16016347372880266,
+        "absoluteError": 0.04524197965656995
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "action": "下注 全下 20.0 BB",
+        "policy": "pressure",
+        "exactEV": 17.311158646323236,
+        "sampledEV": 17.265916666666666,
+        "ci95": 0.16016347372880266,
+        "absoluteError": 0.04524197965656995
+      }
+    ],
+    "strategyComparison": [
+      {
+        "hero": "As Kh",
+        "board": "Qs Js Ts 2h 3d",
+        "baseline": "跟注 5.0 BB",
+        "baselineEV": 14.181818181818466,
+        "picked": "加注 全下 20.0 BB",
+        "pickedEV": 20.74133945155466,
+        "improvement": 6.559521269736193
+      },
+      {
+        "hero": "Ah Ad",
+        "board": "Kh Qh Jh Th 2s",
+        "baseline": "跟注 5.0 BB",
+        "baselineEV": 15.000000000000309,
+        "picked": "加注 全下 20.0 BB",
+        "pickedEV": 26.485429455332714,
+        "improvement": 11.485429455332405
+      },
+      {
+        "hero": "8s 8d",
+        "board": "Kh 7c 2d Js 3h",
+        "baseline": "过牌",
+        "baselineEV": 9.701579906951519,
+        "picked": "下注 11.3 BB",
+        "pickedEV": 11.189455042175634,
+        "improvement": 1.4878751352241153
+      },
+      {
+        "hero": "Kc Qd",
+        "board": "Kh 7c 2d Js 3h",
+        "baseline": "过牌",
+        "baselineEV": 14.808945806080898,
+        "picked": "下注 全下 20.0 BB",
+        "pickedEV": 17.311158646323236,
+        "improvement": 2.502212840242338
+      }
+    ],
+    "elapsedMs": 3406.865166
+  }
+}

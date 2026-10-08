@@ -6,7 +6,13 @@
   "description": "Local Texas Hold'em equity calculator",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "benchmark": "node scripts/benchmark.mjs"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "pokersolver": "2.1.4"
+  }
 }

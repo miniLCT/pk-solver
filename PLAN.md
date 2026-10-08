@@ -13,7 +13,7 @@ The application is a local Chinese-language study GUI for Texas Hold'em. The use
 - [x] M1: local server, card-selection GUI, multiway showdown engine, exact and Monte Carlo modes, correctness tests.
 - [x] M2: heads-up action-analysis GUI; pot, effective stack, position, outstanding bet, opponent profile/range, and structured observed action history.
 - [x] M3: range filtering, action likelihood updates, legal betting tree, stochastic opponent actions, alternative hero continuation policies, EV uncertainty and route summaries.
-- [ ] M4: browser QA, reproducible validation, README with assumptions, staged Git commits.
+- [x] M4: browser QA, reproducible validation, README with assumptions, staged Git commits.
 
 ## Action model contract
 
@@ -44,3 +44,7 @@ The application is a local Chinese-language study GUI for Texas Hold'em. The use
 ## Benchmark requirement
 
 Compare the hand evaluator against the open-source `goldfire/pokersolver` implementation on deterministic random seven-card deals and winner selection. Keep it as a development-only reference dependency. For action EV, compare Monte Carlo rollouts against exact river integration over every legal opponent combination and response branch. Report time, mismatch count, absolute EV error, and sampling intervals. This validates numerical correctness, not GTO strength or real-world profitability. Future CFR baselines: OpenSpiel's small poker games and desktop-postflop's constrained heads-up postflop solves.
+
+## Delivered validation
+
+18 unit tests passed. Open-source benchmarks completed with zero category/winner mismatches and exact river equity agreement. River rollout comparison covers 54 action/policy combinations; maximum sampled EV deviation is 0.0611 BB in the checked run. Browser QA verified duplicate-card blocking, incomplete-board errors, action analysis, invalid pot/range errors, cancellation, policy switching, a 375px single-column layout without horizontal overflow, no captured browser errors, and JSON export. A representative GUI screenshot is saved at `benchmarks/gui-preview.jpg`.
