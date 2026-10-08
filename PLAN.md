@@ -11,8 +11,8 @@ The application is a local Chinese-language study GUI for Texas Hold'em. The use
 ## Milestones
 
 - [x] M1: local server, card-selection GUI, multiway showdown engine, exact and Monte Carlo modes, correctness tests.
-- [ ] M2: heads-up action-analysis GUI; pot, effective stack, position, outstanding bet, opponent profile/range, and structured observed action history.
-- [ ] M3: range filtering, action likelihood updates, legal betting tree, stochastic opponent actions, alternative hero continuation policies, EV uncertainty and route summaries.
+- [x] M2: heads-up action-analysis GUI; pot, effective stack, position, outstanding bet, opponent profile/range, and structured observed action history.
+- [x] M3: range filtering, action likelihood updates, legal betting tree, stochastic opponent actions, alternative hero continuation policies, EV uncertainty and route summaries.
 - [ ] M4: browser QA, reproducible validation, README with assumptions, staged Git commits.
 
 ## Action model contract

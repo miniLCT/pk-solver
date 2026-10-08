@@ -13,6 +13,7 @@
   </header>
   <main>
     <div class="intro"><div><p class="eyebrow">TEXAS HOLD’EM / EQUITY CALCULATOR</p><h1>让每一手牌，<span>心中有数。</span></h1><p class="subtitle">设置牌局，探索你的摊牌胜率与底池权益。</p></div><div class="local-badge"><i></i> 本地计算 · 无需联网</div></div>
+    <nav class="mode-nav" aria-label="分析模块"><a class="selected" href="#setup-title">♠ 胜率计算</a><a href="#actions">◇ 行动路线</a><a href="#benchmarks">↔ 基准对比</a></nav>
     <div class="workspace">
       <section class="setup panel" aria-labelledby="setup-title">
         <div class="panel-head"><h2 id="setup-title"><span class="section-num">01</span> 设置牌局</h2><button id="reset" class="quiet small">↺ 重置</button></div>
@@ -41,10 +42,42 @@
       </section>
     </div>
     <div class="method-note"><span class="note-icon">◇</span><p><strong>概率，来自每一种可能。</strong> 使用标准 52 张牌、七选五牌型比较。权益包含平局时分得的底池份额，代表发牌至摊牌的数学期望。</p><span class="method-tag">MONTE CARLO + EXACT</span></div>
+
+    <section id="actions" class="action-section">
+      <div class="action-intro"><div><p class="eyebrow">RANGE → RESPONSE → EXPECTED VALUE</p><h2>行动路线实验室</h2><p class="subtitle">只用你看得到的信息，比较不同做法的后续路线。</p></div><span class="model-badge">可调整对手模型 · 无需训练</span></div>
+      <div class="workspace action-workspace">
+        <section class="panel action-settings"><div class="panel-head"><h2><span class="section-num">03</span> 决策场景 · 单挑</h2><button id="strategy-demo" class="quiet small">加载示例牌局 ↗</button></div>
+          <div class="settings-body"><p class="context-note" id="strategy-context"></p><div class="input-grid">
+            <label>当前底池 <span>BB · 包含对手当前下注</span><input id="pot" type="number" min="0.01" max="100000" step="0.5" value="10"></label>
+            <label>有效筹码 <span>BB · 对手本次下注前的预算</span><input id="stack" type="number" min="0.01" max="100000" step="1" value="50"></label>
+            <label>当前需跟注 <span>BB · 0 表示未面临下注</span><input id="to-call" type="number" min="0" max="100000" step="0.5" value="0"></label>
+            <label>你的位置 <span>决定后续街次的行动顺序</span><select id="position"><option value="ip">有位置 IP · 后行动</option><option value="oop">无位置 OOP · 先行动</option></select></label>
+            <label>对手起始范围 <span>先验范围 · 移除已知牌</span><select id="range"><option value="random">随机 · 全部合法组合</option><option value="balanced" selected>较宽 · 启发式前 40%</option><option value="tight">较紧 · 启发式前 15%</option><option value="custom">自定义手牌范围</option></select></label>
+            <label>对手行动风格 <span>可切换模型做敏感性比较</span><select id="profile"><option value="balanced">常规型</option><option value="tight">紧弱型</option><option value="loose">松被动型</option><option value="aggressive">松激进型</option></select></label>
+          </div>
+          <label id="range-text-wrap" class="full-label" hidden>自定义范围<input id="range-text" value="22+, A2s+, KTs+, QTs+, JTs, ATo+, KQo" placeholder="22+, AJs+, KQo, AsKh:0.5"><span>支持对子、s / o、+、具体两张牌及 :权重；不支持区间语法。</span></label>
+          <div class="history-section"><div class="field-heading">对手可见行动历史 <span>可选 · 按实际先后顺序添加</span></div><div class="history-input"><select id="history-street" aria-label="历史行动街次"></select><select id="history-action" aria-label="历史行动"><option value="check">过牌</option><option value="bet">下注</option><option value="call">跟注</option><option value="raise">加注</option></select><label class="history-size"><input id="history-size" type="number" min="1" max="500" value="50" aria-label="历史下注占当时底池的百分比"><span>%底池</span></label><button id="history-add" aria-label="添加历史行动">+</button></div><p class="tiny-note">尺度使用行动前底池：跟注填需补金额；加注填超出跟注的增量。历史牌面取当前公共牌的前缀。</p><div id="history-list"></div></div>
+          <div class="input-grid simulation-input"><label>每条路线模拟次数<select id="strategy-trials"><option value="2000">2,000 · 快速探索</option><option value="10000" selected>10,000 · 标准对比</option><option value="30000">30,000 · 精细对比</option></select></label><label>随机种子 <span>相同输入可复现结果</span><input id="seed" type="number" min="0" max="4294967295" step="1" value="2026"></label></div>
+          <div id="strategy-error" class="error" role="alert" hidden></div><button id="analyze" class="calculate">模拟行动路线 <span>↗</span></button><button id="strategy-cancel" class="cancel" hidden>取消模拟</button>
+          <details class="model-details"><summary>查看模型与下注树假设</summary><p>当前版本为单挑启发式行动模型，不是 GTO solver。双方从当前节点起预算相同；对手可用筹码为有效筹码减去当前下注。IP 无需跟注时假设对手已过牌。所有历史行动用于过滤范围，不重建既往底池。</p><p>每街允许一次加注，下注尺度为 33%、75%、100% 底池或有效全下；加注增量按跟注后的底池计算，至少为上一下注增量，短全下例外。已进入当前节点的筹码视为沉没成本。EV 以当前决策为零点，弃牌 EV 为 0。</p><p>对手使用当前牌力、听牌、底池赔率与风格参数计算行动概率。这里的牌力是启发式评分，不是真实权益。先验前 15% / 40% 是启发式排序范围，不是 GTO 开局表。尚无抽水、边池或 ICM。</p><p>你的后续策略分为谨慎控池、价值优先、积极施压。每一条根节点行动都分别模拟这三种后续策略；它们只看自己的牌与当时公共牌。</p></details>
+          </div>
+        </section>
+        <section class="panel strategy-results"><div class="panel-head"><h2><span class="section-num">04</span> 路线与收益对比</h2><button id="export-analysis" class="quiet small" hidden>导出 JSON ↓</button></div>
+          <div id="strategy-empty" class="strategy-empty"><div class="empty-icon">◇</div><h3>一手牌，不止一种走法。</h3><p>沿用上方你的手牌与公共牌。<br>设定场景与对手模型，查看不同选择的 EV。</p><p class="tiny-note">多人胜率可在上方计算；行动模拟仅支持单挑且对手手牌留空。</p></div>
+          <div id="strategy-progress" class="progress-view" hidden><div class="spinner"></div><h3>正在模拟对手的回应与后续街次</h3><p id="strategy-progress-text"></p><progress id="strategy-progress-bar" max="100" value="0"></progress></div>
+          <div id="strategy-content" hidden><div class="strategy-summary"><span class="eyebrow">MODEL-BASED ANALYSIS</span><h3 id="strategy-best"></h3><p id="strategy-summary-copy"></p><div id="range-summary" class="range-summary"></div></div>
+            <div class="analysis-block"><div class="field-heading">选择你的后续策略 <span>影响每条路线的 EV</span></div><div class="policy-toggle"><button data-policy="cautious">谨慎控池</button><button data-policy="value" class="selected">价值优先</button><button data-policy="pressure">积极施压</button></div><div id="ev-table"></div><p class="tiny-note">EV 单位：BB；± 为近似 95% 抽样区间。点击行动查看后续路线。数值接近时不宜认定排序稳定。</p></div>
+            <div class="analysis-block route-block"><div class="field-heading" id="route-title">模拟路线</div><div id="responses" class="response-chips"></div><div id="routes"></div><p class="tiny-note">显示最常见的 4 条模拟路径，可能覆盖部分样本；概率属于设定模型，不是对手实际频率。</p></div><div id="strategy-meta" class="result-meta"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section id="benchmarks" class="benchmark-section panel"><div class="panel-head"><h2><span class="section-num">05</span> 开源基准与验证</h2><span class="status-chip">可复现</span></div><div class="benchmark-body"><div><p class="eyebrow">INDEPENDENT REFERENCE</p><h3>计算正确性，有据可查。</h3><p>牌型与赢家对照 <a href="https://github.com/goldfire/pokersolver" target="_blank" rel="noreferrer">goldfire/pokersolver</a>；行动 EV 对照河牌完整响应树的精确积分。基准命令：<code>npm run benchmark</code>。</p><p class="tiny-note">验证的是计算一致性和抽样误差，未证明实战盈利或接近 GTO。后续 CFR 基准可采用 <a href="https://github.com/google-deepmind/open_spiel" target="_blank" rel="noreferrer">OpenSpiel</a> 与 <a href="https://github.com/b-inary/desktop-postflop" target="_blank" rel="noreferrer">Desktop Postflop</a>。</p></div><div id="benchmark-results" class="benchmark-results">基准报告待生成。</div></div></section>
   </main>
-  <footer><span>RIVER <span class="footer-separator">/</span> 知道概率，理解牌局。</span><span>仅计算摊牌概率，不包含弃牌与下注策略。</span></footer>
+  <footer><span>RIVER <span class="footer-separator">/</span> 知道概率，理解牌局。</span><span>摊牌概率 + 模型路线分析 · 本地扑克学习工具</span></footer>
   <dialog id="card-picker"><div class="dialog-head"><div><p class="eyebrow">SELECT A CARD</p><h2 id="picker-title">选择手牌</h2></div><button id="picker-close" class="close" aria-label="关闭选牌">×</button></div><div id="picker-preview" class="picker-preview"></div><p class="picker-tip">灰色牌已被占用；选牌后自动移至下一个空位。</p><div id="deck" class="deck"></div><div class="picker-footer"><button id="clear-slot" class="quiet">清除当前牌</button><button id="picker-done" class="done">完成选择</button></div></dialog>
   <dialog id="help"><div class="dialog-head"><h2>计算原理</h2><button id="help-close" class="close" aria-label="关闭说明">×</button></div><div class="help-copy"><h3>按标准德州扑克规则比较</h3><p>从每人的两张手牌和五张公共牌中，选出最强的五张；可使用 0、1 或 2 张手牌。花色不决定大小，A2345 为最小顺子。</p><h3>精确枚举 + 蒙特卡洛</h3><p>可能的发牌组合不超过 150,000 时，枚举全部结果；否则，从未占用的牌中均匀无放回抽样，补齐公共牌和随机对手手牌。提高次数可降低随机误差。</p><h3>三个概率与一个权益</h3><p>独赢：你单独拥有最强牌。平局：你与至少一名对手并列最强。落败：至少一名对手更强。三者之和为 100%。</p><p class="formula">权益 = 平均底池份额<br>独赢计 1；k 人平局计 1/k；落败计 0</p><p>例如三人平局，每人权益为 33.33%，而平局率均为 100%。模拟结果给出 Hoeffding 不等式的 95% 保守误差上界，单位为百分点；精确枚举无抽样误差。</p><h3>模型假设</h3><p>空白对手手牌代表所有合法组合等可能，不代表特定玩家的实际范围。计算假设所有人发牌至摊牌、等额争夺同一底池，不考虑弃牌、下注、抽水、边池或不同筹码深度。</p><p class="source-links">规则参考：<a href="https://www.pokerstars.com/poker/games/texas-holdem/" target="_blank" rel="noreferrer">PokerStars</a> · <a href="https://www.pokernews.com/poker-tools/" target="_blank" rel="noreferrer">PokerNews 权益说明</a></p></div></dialog>
   <script type="module" src="src/app.js"></script>
+  <script type="module" src="src/strategy-ui.js"></script>
 </body>
 </html>

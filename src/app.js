@@ -95,7 +95,9 @@ function start() {
   $('progress').value = 0; $('progress-text').textContent = '准备计算…'; $('result-status').textContent = '计算中';
   try { worker = new Worker(new URL('./worker.js', import.meta.url), { type: 'module' }); }
   catch (e) { invalidate(); showError(`无法启动计算：${e.message}`); return; }
+  const activeWorker = worker;
   worker.onmessage = ({ data }) => {
+    if (worker !== activeWorker) return;
     if (data.type === 'progress') {
       $('progress').value = data.done / data.total * 100;
       $('progress-text').textContent = `${data.done.toLocaleString('zh-CN')} / ${data.total.toLocaleString('zh-CN')} · ${Math.floor(data.done / data.total * 100)}%`;
@@ -104,7 +106,7 @@ function start() {
       if (data.type === 'error') { invalidate(); showError(data.message); } else resultView(data.result);
     }
   };
-  worker.onerror = () => { invalidate(); showError('计算线程出错，请重试或刷新页面'); };
+  worker.onerror = () => { if (worker !== activeWorker) return; invalidate(); showError('计算线程出错，请重试或刷新页面'); };
   worker.postMessage(input);
 }
 $('calculate').onclick = start;
@@ -119,6 +121,11 @@ document.querySelectorAll('[data-example]').forEach(b => b.onclick = () => {
   if (b.dataset.example === 'draw') { state.hero = ['Ah', 'Kh'].map(parseCard); state.board = [...['Qh', '7h', '2c'].map(parseCard), null, null]; }
   else { state.hero = ['As', 'Ah'].map(parseCard); if (b.dataset.example === 'duel') state.opponents = [['Ks', 'Kh'].map(parseCard)]; }
   render(); start();
+});
+$('card-picker').addEventListener('close', () => {
+  const compact = state.board.filter(c => c != null);
+  while (compact.length < 5) compact.push(null);
+  if (compact.some((c, i) => c !== state.board[i])) { state.board = compact; invalidate(); render(); }
 });
 $('picker-close').onclick = $('picker-done').onclick = () => $('card-picker').close();
 $('clear-slot').onclick = () => { groupOf(pickerTarget)[pickerTarget.index] = null; invalidate(); render(); renderPicker(); };
